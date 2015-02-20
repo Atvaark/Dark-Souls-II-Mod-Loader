@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{94B76881-B9E8-4ABC-8E28-5A12E93A8775}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DarkSoulsIIModLoader</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <NuGetPackageImportStamp>b8210c2a</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>include;..\packages\;$(IncludePath)</IncludePath>
+    <SourcePath>src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>include;..\packages\;$(IncludePath)</IncludePath>
+    <SourcePath>src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DARKSOULSIIMODLOADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;DARKSOULSIIMODLOADER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AllocatorHook.h" />
+    <ClInclude Include="include\DarkSoulsII\Allocator.h" />
+    <ClInclude Include="include\DarkSoulsII\Binder4FileOperator.h" />
+    <ClInclude Include="include\DarkSoulsII\CacheableFileLoader.h" />
+    <ClInclude Include="include\DarkSoulsII\CacheFileOperator.h" />
+    <ClInclude Include="include\DarkSoulsII\CacheManager.h" />
+    <ClInclude Include="include\DarkSoulsII\ChainedFileRsrcRequest.h" />
+    <ClInclude Include="include\DarkSoulsII\DriveType.h" />
+    <ClInclude Include="include\DarkSoulsII\EncryptedBinderLightFileOperator.h" />
+    <ClInclude Include="include\DarkSoulsII\FileDevice.h" />
+    <ClInclude Include="include\DarkSoulsII\FileEnumeratorSPI.h" />
+    <ClInclude Include="include\DarkSoulsII\FileInputStream.h" />
+    <ClInclude Include="include\DarkSoulsII\FileInputStreamInner.h" />
+    <ClInclude Include="include\DarkSoulsII\FileLoader.h" />
+    <ClInclude Include="include\DarkSoulsII\FileLoaderInputTask.h" />
+    <ClInclude Include="include\DarkSoulsII\FileLoaderOutputTask.h" />
+    <ClInclude Include="include\DarkSoulsII\FileLoaderQueue.h" />
+    <ClInclude Include="include\DarkSoulsII\FileLoaderTask.h" />
+    <ClInclude Include="include\DarkSoulsII\FileOperator.h" />
+    <ClInclude Include="include\DarkSoulsII\FileTransferTask.h" />
+    <ClInclude Include="include\DarkSoulsII\HeapAllocator.h" />
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileDevice.h" />
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileEnumeratorSPI.h" />
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileOperator.h" />
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileOperatorFlag.h" />
+    <ClInclude Include="include\DarkSoulsII\PlainConditionSignal.h" />
+    <ClInclude Include="include\DarkSoulsII\PlainLightMutex.h" />
+    <ClInclude Include="include\DarkSoulsII\PostProcessor.h" />
+    <ClInclude Include="include\DarkSoulsII\ResourceFileRequest.h" />
+    <ClInclude Include="include\DarkSoulsII\ResourceRequest.h" />
+    <ClInclude Include="include\DarkSoulsII\Runnable.h" />
+    <ClInclude Include="include\DarkSoulsII\SystemHeapImpl.h" />
+    <ClInclude Include="include\DarkSoulsII\TaskManager.h" />
+    <ClInclude Include="include\DarkSoulsII\TransferTask.h" />
+    <ClInclude Include="include\DarkSoulsII\TransferTaskInner.h" />
+    <ClInclude Include="include\DarkSoulsII\TransferTaskManager.h" />
+    <ClInclude Include="include\DarkSoulsII\VirtualDiskFileOperator.h" />
+    <ClInclude Include="include\dllmain.h" />
+    <ClInclude Include="include\FileInfo.h" />
+    <ClInclude Include="include\FileInfoHasher.h" />
+    <ClInclude Include="include\FileLoaderTaskDumper.h" />
+    <ClInclude Include="include\FileLoaderTaskDumperLog.h" />
+    <ClInclude Include="include\FileLoaderTaskInterceptor.h" />
+    <ClInclude Include="include\FileLoaderTaskInterceptorSettings.h" />
+    <ClInclude Include="include\FileOperatorVisitor.h" />
+    <ClInclude Include="include\InputFileInfo.h" />
+    <ClInclude Include="include\RttiAcceptHelper.h" />
+    <ClInclude Include="include\TestFileOperatorVisitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AllocatorHook.cpp" />
+    <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\FileInfo.cpp" />
+    <ClCompile Include="src\FileInfoHasher.cpp" />
+    <ClCompile Include="src\FileLoaderTaskDumper.cpp" />
+    <ClCompile Include="src\FileLoaderTaskDumperLog.cpp" />
+    <ClCompile Include="src\FileLoaderTaskInterceptor.cpp" />
+    <ClCompile Include="src\FileLoaderTaskInterceptorSettings.cpp" />
+    <ClCompile Include="src\InputFileInfo.cpp" />
+    <ClCompile Include="src\TestFileOperatorVisitor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\DarkSoulsIIModLoader.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\minhook.1.3\build\native\minhook.targets" Condition="Exists('..\packages\minhook.1.3\build\native\minhook.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Aktivieren Sie die Wiederherstellung von NuGet-Paketen, um die fehlende Datei herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\minhook.1.3\build\native\minhook.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\minhook.1.3\build\native\minhook.targets'))" />
+  </Target>
+</Project>

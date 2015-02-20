@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\DarkSoulsII">
+      <UniqueIdentifier>{c76b1ce9-dd44-4170-94d7-49b2d69cbb31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\DarkSoulsII\Allocator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\Binder4FileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\CacheableFileLoader.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\CacheFileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\CacheManager.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\ChainedFileRsrcRequest.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\DriveType.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\EncryptedBinderLightFileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileDevice.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileEnumeratorSPI.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileInputStream.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileInputStreamInner.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileLoader.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileLoaderInputTask.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileLoaderOutputTask.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileLoaderQueue.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileLoaderTask.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\FileTransferTask.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\HeapAllocator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileDevice.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileEnumeratorSPI.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\PlainConditionSignal.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\PlainLightMutex.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\PostProcessor.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\ResourceFileRequest.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\ResourceRequest.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\Runnable.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\SystemHeapImpl.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\TaskManager.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\TransferTask.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\TransferTaskInner.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\TransferTaskManager.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\VirtualDiskFileOperator.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AllocatorHook.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dllmain.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileInfo.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileInfoHasher.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileLoaderTaskDumper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileLoaderTaskDumperLog.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileLoaderTaskInterceptor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileLoaderTaskInterceptorSettings.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FileOperatorVisitor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputFileInfo.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RttiAcceptHelper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TestFileOperatorVisitor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileOperatorFlag.h">
+      <Filter>Headerdateien\DarkSoulsII</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AllocatorHook.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileInfo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileInfoHasher.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileLoaderTaskDumper.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileLoaderTaskDumperLog.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileLoaderTaskInterceptor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileLoaderTaskInterceptorSettings.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputFileInfo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestFileOperatorVisitor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\DarkSoulsIIModLoader.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
