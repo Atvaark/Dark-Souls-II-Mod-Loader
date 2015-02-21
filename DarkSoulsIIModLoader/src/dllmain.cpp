@@ -8,15 +8,14 @@
 #include "minhook.1.3/lib/native/include/Minhook.h"
 #pragma comment(lib, "libMinHook.lib")
 
-// TODO: Update offsets from 1.0.7 to 1.0.10
-const unsigned int kIsTaskManagerInitialized = 0x0141D8A8;
-const unsigned int kTaskManager = 0x0141DEC0;
-const unsigned int kFileLoader_ReadFile = 0x0094FDE0;
-const unsigned int kFileLoader_ReadFileInner = 0x00951540;
-const unsigned int kFileLoader_AddNewFileToLoad = 0x00950550;
-const unsigned int kHashFileName = 0x011145A0;
-const unsigned int kGetSystemHeapImpl = 0x008AC7A0;
-const unsigned int kPlainConditionSignal_SetEvent = 0x00907880;
+const unsigned int kIsTaskManagerInitialized = 0x158BC78;
+const unsigned int kTaskManager = 0x158C290;
+const unsigned int kFileLoader_ReadFile = 0x009C54F0;
+const unsigned int kFileLoader_ReadFileInner = 0x009C6F00;
+const unsigned int kFileLoader_AddNewFileToLoad = 0x009C5C60;
+const unsigned int kHashFileName = 0x01227350;
+const unsigned int kGetSystemHeapImpl = 0x00913CD0;
+const unsigned int kPlainConditionSignal_SetEvent = 0x009739D0;
 
 TaskManager* p_task_manager = reinterpret_cast<TaskManager*>(kTaskManager);
 BOOL* p_is_file_manager_initialized = reinterpret_cast<BOOL*>(kIsTaskManagerInitialized);
@@ -323,7 +322,9 @@ void initialize()
 		Sleep(10);
 	}
 	interceptor = FileLoaderTaskInterceptor(get_default_interceptor_settings_path());
-	dumper = FileLoaderTaskDumper(get_default_dump_path(), get_default_log_path());
+	std::wstring default_dump_path = get_default_dump_path();
+	std::wstring default_log_path = get_default_log_path();
+	dumper = FileLoaderTaskDumper(default_dump_path, default_log_path);
 
 	initialize_hooks();
 	dumper.enabled = true;

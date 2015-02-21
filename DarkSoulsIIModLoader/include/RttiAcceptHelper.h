@@ -14,12 +14,12 @@ public:
 	template <typename T>
 	static T accept_file_operator_visitor(FileOperator* file_operator, FileOperatorVisitor<T>* file_operator_visitor)
 	{
-		const unsigned int kEncryptedBinderLightFileOperator = 0x012AE494;
-		const unsigned int kBinder4FileOperator = 0x011B9ED4;
-		const unsigned int kVirtualDiskFileOperator = 0x011B9DCC;
-		const unsigned int kMicrosoftDiskFileOperator = 0x011B8C1C;
-		const unsigned int kCacheFileOperator = 0x011B2964;
-		const unsigned int kFileOperator = 0x011ACD9C;
+		const unsigned int kEncryptedBinderLightFileOperator = 0x013EDE14;
+		const unsigned int kBinder4FileOperator = 0x012F94FC;
+		const unsigned int kVirtualDiskFileOperator = 0x012F93F4;
+		const unsigned int kMicrosoftDiskFileOperator = 0x012F823C;
+		const unsigned int kCacheFileOperator = 0x012F1F84;
+		const unsigned int kFileOperator = 0x012EC35C;
 
 		unsigned int vtable_address = get_vtable(file_operator);
 
