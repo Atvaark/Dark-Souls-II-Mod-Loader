@@ -9,7 +9,6 @@ public:
 	virtual void leave();
 
 	CRITICAL_SECTION critical_section; //0x0004 
-	BYTE is_initialized_flag; //0x001C 
+	unsigned char is_initialized_flag; //0x001C 
 	char _0x001D[3];
 };
-

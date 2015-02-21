@@ -10,5 +10,4 @@ public:
 	int visitMicrosoftDiskFileOperator(MicrosoftDiskFileOperator* file_operator) override;
 	int visitCacheFileOperator(CacheFileOperator* file_operator) override;
 	int visitFileOperator(FileOperator* file_operator) override;
-
 };

@@ -10,6 +10,7 @@ class FileLoaderTaskInterceptorSettings
 	void read_settings_line(std::wstring &line);
 public:
 	std::map<FileInfo, InputFileInfo> file_replacements;
+
 	FileLoaderTaskInterceptorSettings();
 	FileLoaderTaskInterceptorSettings(std::wstring &settingsPath);
 	~FileLoaderTaskInterceptorSettings();

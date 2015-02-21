@@ -48,10 +48,9 @@ public:
 	virtual void method_9C();
 
 	Allocator* p_allocator;
-	DWORD unknown1; // 0 when truncated/extender, else -1 , or 0xFFFFFFFAu, -1 when write error
+	int unknown1; // 0 when truncated/extender, else -1 , or 0xFFFFFFFAu, -1 when write error
 	void* unknown2;
-	DWORD unknown3; // gets masked with &1
+	int unknown3; // gets masked with &1
 	FileDevice* p_file_device;
 	std::wstring str;
 };
-

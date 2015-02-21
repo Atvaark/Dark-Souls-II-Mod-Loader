@@ -16,7 +16,7 @@ public:
 	PlainLightMutex mutex1; //0x0018 
 	PlainLightMutex mutex2; //0x0038 
 	char _0x0058[4];
-	DWORD sleep_time; //0x005C 
+	int sleep_time; //0x005C 
 	char _0x0060[56];
 	CacheableFileLoader cacheable_file_loader; //0x0098 
 	char _0x02DC[28];
@@ -25,4 +25,3 @@ public:
 	PostProcessor post_processor; //0x0438 
 	char _0x06CC[120];
 };
-

@@ -17,7 +17,5 @@ public:
 	~FileLoaderTaskInterceptor();
 
 	void add_replacement(FileInfo &file, InputFileInfo &replacement);
-
 	bool handle(FileLoaderTask &task);
 };
-

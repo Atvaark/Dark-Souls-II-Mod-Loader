@@ -5,9 +5,9 @@ class EncryptedBinderLightFileOperator : public FileOperator
 {
 public:
 	~EncryptedBinderLightFileOperator() override;
-	DWORD unknown_4;
-	DWORD unknown_5;
-	DWORD unknown_6;
+	int unknown_4;
+	int unknown_5;
+	int unknown_6;
 	unsigned int file_size;
 	unsigned int read_file_size;
 

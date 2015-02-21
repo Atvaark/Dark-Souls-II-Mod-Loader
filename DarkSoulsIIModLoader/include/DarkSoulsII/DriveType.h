@@ -2,7 +2,7 @@
 
 enum DriveType
 {
-	kFixedD = 0,
+	kFixedDrive = 0,
 	kCdRom = 1,
 	kOther = 2
 };
