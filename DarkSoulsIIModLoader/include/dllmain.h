@@ -45,6 +45,8 @@ std::wstring get_module_path();
 
 std::wstring get_default_log_path();
 
+std::wstring get_default_hash_log_path();
+
 std::wstring get_default_dump_path();
 
 std::wstring get_default_interceptor_settings_path();

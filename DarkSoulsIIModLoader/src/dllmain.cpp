@@ -38,8 +38,6 @@ RttiAcceptHelper accept_helper;
 
 HMODULE module_handle;
 FILE* p_hash_log_file = nullptr;
-std::string hash_log_file_path = "hash.log";
-std::string hash_log_file_mode = "a";
 
 bool are_deques_initialized = false;
 std::deque<FileLoaderTask>* p_global_read_deque;
@@ -239,10 +237,11 @@ void __stdcall log_hash(wchar_t* fileName, unsigned int hash)
 {
 	if (p_hash_log_file == nullptr)
 	{
-		fopen_s(&p_hash_log_file, hash_log_file_path.c_str(), hash_log_file_mode.c_str());
+		p_hash_log_file = _wfsopen(get_default_hash_log_path().c_str(), L"a", _SH_DENYWR);
 	}
 
 	fwprintf_s(p_hash_log_file, L"%010u;%s\n", hash, fileName);
+	fflush(p_hash_log_file);
 }
 
 int initialize_hooks()
@@ -265,14 +264,13 @@ int initialize_hooks()
 	if (MH_EnableHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
 		return -1;
 
-	//if (MH_CreateHook((void*)HashFileName, &hHashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
-	//	return -1;
-	//if (MH_EnableHook((void*)HashFileName) != MH_OK)
-	//	return -1;
+	if (MH_CreateHook(static_cast<void*>(HashFileName), &hHashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
+		return -1;
+	if (MH_EnableHook(static_cast<void*>(HashFileName)) != MH_OK)
+		return -1;
 
 	return 1;
 }
-
 
 std::wstring get_executable_path()
 {
@@ -295,6 +293,15 @@ std::wstring get_default_log_path()
 	if (pos != std::wstring::npos)
 		path = path.substr(0, pos);
 	return path.append(L".log");
+}
+
+std::wstring get_default_hash_log_path()
+{
+	std::wstring path = get_module_path();
+	std::wstring::size_type pos = path.find_last_of(L".");
+	if (pos != std::wstring::npos)
+		path = path.substr(0, pos);
+	return path.append(L".hash.log");
 }
 
 std::wstring get_default_dump_path()
@@ -341,6 +348,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	case DLL_PROCESS_ATTACH:
 		module_handle = hModule;
 		initialize();
+		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:

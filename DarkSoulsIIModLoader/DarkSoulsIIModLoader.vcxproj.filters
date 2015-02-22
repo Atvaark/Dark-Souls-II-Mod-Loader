@@ -162,6 +162,9 @@
     <ClInclude Include="include\DarkSoulsII\MicrosoftDiskFileOperatorFlag.h">
       <Filter>Headerdateien\DarkSoulsII</Filter>
     </ClInclude>
+    <ClInclude Include="res\resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorHook.cpp">

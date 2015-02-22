@@ -4,9 +4,6 @@ A tool that replaces the file loading mechanism with a custom implementation. Th
 ##Build Requirements
 * Visual Studio 2013
 
-##Requirements
-* A dll injector
-
 ##Configuration
 Settings are saved in DarkSoulsIIModLoader.ini.
 Each file that should be replaced has be added using the following format:
@@ -21,5 +18,4 @@ map:/param/GeneratorParam_m10_04_00_00.param;E:\map\param\GeneratorParam_m10_04_
 ```
 
 ##Remarks
-* The hard coded offsets are for Dark Souls II 1.0.7
 * File dumping is enabled by default

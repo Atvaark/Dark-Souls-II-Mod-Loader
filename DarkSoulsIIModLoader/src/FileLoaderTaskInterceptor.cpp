@@ -24,6 +24,7 @@ bool FileLoaderTaskInterceptor::replace_file(FileLoaderTask &task, InputFileInfo
 
 		if (task.total_file_size != replacementFileSize)
 		{
+			// BUG: The old buffer isn't getting deallocated and there are still references to it.
 			task.p_buffer = new char[replacementFileSize];
 			task.total_file_size = replacementFileSize;
 			task.read_file_size = 0;
