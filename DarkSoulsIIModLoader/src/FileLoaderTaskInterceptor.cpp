@@ -5,7 +5,7 @@ FileLoaderTaskInterceptor::FileLoaderTaskInterceptor()
 {
 }
 
-FileLoaderTaskInterceptor::FileLoaderTaskInterceptor(std::wstring settingsFilePath) : settings(settingsFilePath)
+FileLoaderTaskInterceptor::FileLoaderTaskInterceptor(FileLoaderTaskInterceptorSettings& settings) : settings(settings)
 {
 
 }
@@ -22,7 +22,7 @@ bool FileLoaderTaskInterceptor::replace_file(FileLoaderTask &task, InputFileInfo
 	if(task.read_file_size == task.total_file_size)
 	{
 
-		if (task.total_file_size != replacementFileSize)
+		if (task.total_file_size < replacementFileSize)
 		{
 			// BUG: The old buffer isn't getting deallocated and there are still references to it.
 			task.p_buffer = new char[replacementFileSize];
@@ -47,8 +47,10 @@ void FileLoaderTaskInterceptor::add_replacement(FileInfo &file, InputFileInfo &r
 
 bool FileLoaderTaskInterceptor::handle(FileLoaderTask &task)
 {
-	FileInfo file = FileInfo(std::wstring(task.p_file_name), 0);
+	if (!enabled)
+		return false;
 
+	FileInfo file = FileInfo(std::wstring(task.p_file_name), 0);
 	if (task.read_file_size == task.total_file_size)
 	{
 		auto result = settings.file_replacements.find(file);

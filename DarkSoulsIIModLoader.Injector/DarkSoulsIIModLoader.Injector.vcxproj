@@ -88,6 +88,9 @@
   <ItemGroup>
     <ResourceCompile Include="res\DarkSoulsIIModLoader.Injector.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="res\resource.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\minhook.1.2.2\build\native\minhook.targets" Condition="Exists('..\packages\minhook.1.2.2\build\native\minhook.targets')" />

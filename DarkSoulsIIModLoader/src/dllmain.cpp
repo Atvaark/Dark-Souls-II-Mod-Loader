@@ -1,4 +1,6 @@
 #include "dllmain.h"
+#include "ModLoaderSettings.h"
+#include "FileLoaderTaskInterceptorSettings.h"
 #include "FileLoaderTaskInterceptor.h"
 #include "FileLoaderTaskDumper.h"
 #include "RttiAcceptHelper.h"
@@ -32,6 +34,8 @@ tFileLoader_ReadFileInner oFileLoader_ReadFileInner = nullptr;
 tFileLoader_AddNewFileToLoad oFileLoader_AddNewFileToLoad = nullptr;
 tHashFileName oHashFileName = nullptr;
 
+ModLoaderSettings settings;
+FileLoaderTaskInterceptorSettings interceptor_settings;
 FileLoaderTaskInterceptor interceptor;
 FileLoaderTaskDumper dumper;
 RttiAcceptHelper accept_helper;
@@ -235,40 +239,69 @@ __declspec(naked) bool __fastcall hHashFileName(wchar_t* /*fileName*/, void* /*n
 
 void __stdcall log_hash(wchar_t* fileName, unsigned int hash)
 {
-	if (p_hash_log_file == nullptr)
+	if (settings.log_hashes)
 	{
-		p_hash_log_file = _wfsopen(get_default_hash_log_path().c_str(), L"a", _SH_DENYWR);
-	}
+		if (p_hash_log_file == nullptr)
+		{
+			p_hash_log_file = _wfsopen(get_default_hash_log_path().c_str(), L"a", _SH_DENYWR);
+		}
 
-	fwprintf_s(p_hash_log_file, L"%010u;%s\n", hash, fileName);
-	fflush(p_hash_log_file);
+		fwprintf_s(p_hash_log_file, L"%010u;%s\n", hash, fileName);
+		fflush(p_hash_log_file);
+	}
 }
 
 int initialize_hooks()
 {
 	if (MH_Initialize() != MH_OK)
-		return -1;
+		return 0;
 
 	if (MH_CreateHook(static_cast<void*>(FileLoader_ReadFile), &hk_FileLoader_read_file, reinterpret_cast<void**>(&oFileLoader_ReadFile)) != MH_OK)
-		return -1;
+		return 0;
 	if (MH_EnableHook(static_cast<void*>(FileLoader_ReadFile)) != MH_OK)
-		return -1;
+		return 0;
 
 	if (MH_CreateHook(static_cast<void*>(FileLoader_ReadFileInnenr), &hk_FileLoader_read_file_inner, reinterpret_cast<void**>(&oFileLoader_ReadFileInner)) != MH_OK)
-		return -1;
+		return 0;
 	if (MH_EnableHook(static_cast<void*>(FileLoader_ReadFileInnenr)) != MH_OK)
-		return -1;
+		return 0;
 
 	if (MH_CreateHook(static_cast<void*>(FileLoader_AddNewFileToLoad), &hk_FileLoader_add_new_file_to_load, reinterpret_cast<void**>(&oFileLoader_AddNewFileToLoad)) != MH_OK)
-		return -1;
+		return 0;
 	if (MH_EnableHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
-		return -1;
-
+		return 0;
+	
 	if (MH_CreateHook(static_cast<void*>(HashFileName), &hHashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
-		return -1;
+		return 0;
 	if (MH_EnableHook(static_cast<void*>(HashFileName)) != MH_OK)
-		return -1;
+		return 0;
 
+	return 1;
+}
+
+int remove_hooks()
+{
+	if (MH_RemoveHook(static_cast<void*>(FileLoader_ReadFile)) != MH_OK)
+		return 0;
+	if (MH_RemoveHook(static_cast<void*>(FileLoader_ReadFileInnenr)) != MH_OK)
+		return 0;
+	if (MH_RemoveHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
+		return 0;
+	if (MH_RemoveHook(static_cast<void*>(HashFileName)) != MH_OK)
+		return 0;
+	return 1;
+}
+
+int disable_hooks()
+{
+	if (MH_DisableHook(static_cast<void*>(FileLoader_ReadFile)) != MH_OK)
+		return 0;
+	if (MH_DisableHook(static_cast<void*>(FileLoader_ReadFileInnenr)) != MH_OK)
+		return 0;
+	if (MH_DisableHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
+		return 0;
+	if (MH_DisableHook(static_cast<void*>(HashFileName)) != MH_OK)
+		return 0;
 	return 1;
 }
 
@@ -292,7 +325,7 @@ std::wstring get_default_log_path()
 	std::wstring::size_type pos = path.find_last_of(L".");
 	if (pos != std::wstring::npos)
 		path = path.substr(0, pos);
-	return path.append(L".log");
+	return path.append(L".dump.log");
 }
 
 std::wstring get_default_hash_log_path()
@@ -304,16 +337,34 @@ std::wstring get_default_hash_log_path()
 	return path.append(L".hash.log");
 }
 
-std::wstring get_default_dump_path()
+std::wstring get_default_dump_directory()
 {
-	std::wstring path = get_executable_path();
+	std::wstring path = get_module_path();
 	std::wstring::size_type pos = path.find_last_of(L"\\/");
 	if (pos != std::wstring::npos) 
 		path = path.substr(0, pos);
 	return path.append(L"\\dump\\");
 }
 
-std::wstring get_default_interceptor_settings_path()
+std::wstring get_default_mods_directory()
+{
+	std::wstring path = get_module_path();
+	std::wstring::size_type pos = path.find_last_of(L"\\/");
+	if (pos != std::wstring::npos)
+		path = path.substr(0, pos);
+	return path.append(L"\\mods\\");
+}
+
+std::wstring get_default_replacement_settings_path()
+{
+	std::wstring path = get_module_path();
+	std::wstring::size_type pos = path.find_last_of(L".");
+	if (pos != std::wstring::npos)
+		path = path.substr(0, pos);
+	return path.append(L".mods.ini");
+}
+
+std::wstring get_default_settings_path()
 {
 	std::wstring path = get_module_path();
 	std::wstring::size_type pos = path.find_last_of(L".");
@@ -328,16 +379,30 @@ void initialize()
 	{
 		Sleep(10);
 	}
-	interceptor = FileLoaderTaskInterceptor(get_default_interceptor_settings_path());
-	std::wstring default_dump_path = get_default_dump_path();
-	std::wstring default_log_path = get_default_log_path();
-	dumper = FileLoaderTaskDumper(default_dump_path, default_log_path);
+
+	std::wstring settings_path = get_default_settings_path();
+	std::wstring interceptor_settings_path = get_default_replacement_settings_path();
+	std::wstring log_path = get_default_log_path();
+
+	settings = ModLoaderSettings(settings_path);
+
+	if (settings.mods_path == L"")
+		settings.mods_path = get_default_mods_directory();
+
+	if (settings.dump_directory == L"")
+		settings.dump_directory = get_default_dump_directory();
+
+
+	interceptor_settings = FileLoaderTaskInterceptorSettings(settings.mods_path, interceptor_settings_path);
+	interceptor = FileLoaderTaskInterceptor(interceptor_settings);
+	dumper = FileLoaderTaskDumper(settings.dump_directory, log_path);
+
+	interceptor.enabled = settings.replace_files;
+	dumper.enabled = settings.dump_files;
 
 	initialize_hooks();
-	dumper.enabled = true;
 }
 
-// TODO: Implement a deinitialize method that unhooks the functions
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID /*lpReserved*/

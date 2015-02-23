@@ -5,14 +5,15 @@
 
 class FileLoaderTaskInterceptorSettings
 {
+	std::wstring mods_path;
 	std::wstring settings_path;
 	void read_settings();
-	void read_settings_line(std::wstring &line);
+	void parse_replacement_file(std::wstring &line);
 public:
 	std::map<FileInfo, InputFileInfo> file_replacements;
 
 	FileLoaderTaskInterceptorSettings();
-	FileLoaderTaskInterceptorSettings(std::wstring &settingsPath);
+	FileLoaderTaskInterceptorSettings(std::wstring &mods_path, std::wstring &settings_path);
 	~FileLoaderTaskInterceptorSettings();
 	
 };

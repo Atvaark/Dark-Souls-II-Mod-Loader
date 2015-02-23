@@ -7,12 +7,12 @@ FileLoaderTaskDumper::FileLoaderTaskDumper()
 }
 
 
-FileLoaderTaskDumper::FileLoaderTaskDumper(std::wstring &dumpPath) : dump_path(dumpPath)
+FileLoaderTaskDumper::FileLoaderTaskDumper(std::wstring &dumpPath) : dump_directory(dumpPath)
 {
 
 }
 
-FileLoaderTaskDumper::FileLoaderTaskDumper(std::wstring &dumpPath, std::wstring &logFileName) : dumper_log(FileLoaderTaskDumperLog(logFileName)), dump_path(dumpPath)
+FileLoaderTaskDumper::FileLoaderTaskDumper(std::wstring &dumpPath, std::wstring &logFileName) : dumper_log(FileLoaderTaskDumperLog(logFileName)), dump_directory(dumpPath)
 {
 
 }
@@ -26,7 +26,7 @@ void FileLoaderTaskDumper::dump(FileLoaderTask &task, FileInfo &file)
 {
 	std::ofstream stream;
 	std::wstring path;
-	path.append(dump_path);
+	path.append(dump_directory);
 	path.append(sanitize_file_name(file.get_file_name()));
 	create_directories(path);
 
@@ -72,18 +72,18 @@ void FileLoaderTaskDumper::create_directories(const std::wstring &fileName)
 
 bool FileLoaderTaskDumper::handle(FileLoaderTask &task)
 {
-	if (enabled)
-	{
-		if (task.read_file_size == task.total_file_size)
-		{
-			FileInfo file = FileInfo(std::wstring(task.p_file_name), task.total_file_size);
+	if (!enabled)
+		return false;
 
-			auto result = dumped_files.find(file);
-			if (result == dumped_files.end())
-			{
-				dump(task, file);
-				return true;
-			}
+	if (task.read_file_size == task.total_file_size)
+	{
+		FileInfo file = FileInfo(std::wstring(task.p_file_name), task.total_file_size);
+
+		auto result = dumped_files.find(file);
+		if (result == dumped_files.end())
+		{
+			dump(task, file);
+			return true;
 		}
 	}
 	return false;

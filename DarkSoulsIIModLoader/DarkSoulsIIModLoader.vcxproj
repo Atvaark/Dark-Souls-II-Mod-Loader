@@ -129,7 +129,9 @@
     <ClInclude Include="include\FileOperatorVisitor.h" />
     <ClInclude Include="include\InputFileInfo.h" />
     <ClInclude Include="include\RttiAcceptHelper.h" />
+    <ClInclude Include="include\ModLoaderSettings.h" />
     <ClInclude Include="include\TestFileOperatorVisitor.h" />
+    <ClInclude Include="res\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AllocatorHook.cpp" />
@@ -141,6 +143,7 @@
     <ClCompile Include="src\FileLoaderTaskInterceptor.cpp" />
     <ClCompile Include="src\FileLoaderTaskInterceptorSettings.cpp" />
     <ClCompile Include="src\InputFileInfo.cpp" />
+    <ClCompile Include="src\ModLoaderSettings.cpp" />
     <ClCompile Include="src\TestFileOperatorVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>

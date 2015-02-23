@@ -39,6 +39,10 @@ void __stdcall log_hash(wchar_t* file_name, unsigned int hash);
 
 int initialize_hooks();
 
+int remove_hooks();
+
+int disable_hooks();
+
 std::wstring get_executable_path();
 
 std::wstring get_module_path();
@@ -47,9 +51,13 @@ std::wstring get_default_log_path();
 
 std::wstring get_default_hash_log_path();
 
-std::wstring get_default_dump_path();
+std::wstring get_default_dump_directory();
 
-std::wstring get_default_interceptor_settings_path();
+std::wstring get_default_mods_directory();
+
+std::wstring get_default_replacement_settings_path();
+
+std::wstring get_default_settings_path();
 
 void initialize();
 

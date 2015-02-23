@@ -14,12 +14,12 @@ class FileLoaderTaskDumper
 	std::wstring sanitize_file_name(const std::wstring &fileName);
 	void create_directories(const std::wstring &fileName);
 public:
-	std::wstring dump_path;
+	std::wstring dump_directory;
 	bool enabled;
 
 	FileLoaderTaskDumper();
-	FileLoaderTaskDumper(std::wstring &dumpPath);
-	FileLoaderTaskDumper(std::wstring &dumpPath, std::wstring &logFileName);
+	FileLoaderTaskDumper(std::wstring &dump_directory);
+	FileLoaderTaskDumper(std::wstring &dump_directory, std::wstring &log_path);
 	~FileLoaderTaskDumper();
 
 	bool handle(FileLoaderTask &task);
