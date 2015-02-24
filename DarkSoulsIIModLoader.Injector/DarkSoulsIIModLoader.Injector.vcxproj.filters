@@ -7,6 +7,9 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{c521ac19-a1eb-4f0b-9e73-e891f63d672a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{488c2acf-c61b-4db4-81cc-622ac3b7f461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -19,6 +22,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="res\resource.h" />
+    <ClInclude Include="include\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

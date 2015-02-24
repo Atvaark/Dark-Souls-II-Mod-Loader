@@ -165,7 +165,7 @@
     <ClInclude Include="include\ModLoaderSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="res\resource.h">
+    <ClInclude Include="include\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
