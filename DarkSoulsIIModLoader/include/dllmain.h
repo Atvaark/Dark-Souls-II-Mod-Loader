@@ -35,6 +35,10 @@ void __fastcall hk_FileLoader_add_new_file_to_load(FileLoader* This,
 	std::deque<FileLoaderOutputTask>* output_deque,
 	std::deque<FileLoaderTask>* unknown_deque2);
 
+char __fastcall hk_FileLoader_Run(FileLoader *This, void* notUsed, int a2);
+
+bool __fastcall hk_HashFileName(wchar_t* fileName, void* notUsedDcx, unsigned int* out_hash);
+
 void __stdcall log_hash(wchar_t* file_name, unsigned int hash);
 
 int initialize_hooks();

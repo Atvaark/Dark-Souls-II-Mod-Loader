@@ -43,7 +43,7 @@ RttiAcceptHelper accept_helper;
 HMODULE module_handle;
 FILE* p_hash_log_file = nullptr;
 
-bool are_deques_initialized = false;
+bool deques_initialized = false;
 std::deque<FileLoaderTask>* p_global_read_deque;
 std::deque<FileLoaderTask>* p_global_unknown_deque1;
 std::deque<FileLoaderInputTask>* p_global_input_deque;
@@ -89,20 +89,20 @@ void __fastcall hk_FileLoader_add_new_file_to_load(FileLoader* This,
 	std::deque<FileLoaderOutputTask>* outputDeque,
 	std::deque<FileLoaderTask>* unknownDeque2)
 {
-	if (are_deques_initialized == false)
+	if (deques_initialized == false)
 	{
 		p_global_read_deque = readDeque;
 		p_global_unknown_deque1 = unknownDeque1;
 		p_global_input_deque = inputDeque;
 		p_global_output_deque = outputDeque;
 		p_global_deque2 = unknownDeque2;
-		are_deques_initialized = true;
+		deques_initialized = true;
 	}
 
 	oFileLoader_AddNewFileToLoad(This, readDeque, unknownDeque1, inputDeque, outputDeque, unknownDeque2);
 }
 
-char __fastcall hFileLoader_Run(FileLoader *This, void* /*notUsed*/, int /*a2*/)
+char __fastcall hk_FileLoader_Run(FileLoader *This, void* /*notUsed*/, int /*a2*/)
 {
 	std::deque<FileLoaderTask> readDeque;
 	std::deque<FileLoaderTask> unknownDeque1;
@@ -170,7 +170,7 @@ char __fastcall hFileLoader_Run(FileLoader *This, void* /*notUsed*/, int /*a2*/)
 	return 0;
 }
 
-__declspec(naked) bool __fastcall hHashFileName(wchar_t* /*fileName*/, void* /*notUsedDcx*/, unsigned int* /*out_hash*/)
+__declspec(naked) bool __fastcall hk_HashFileName(wchar_t* /*fileName*/, void* /*notUsedDcx*/, unsigned int* /*out_hash*/)
 {
 	__asm
 	{
@@ -271,7 +271,7 @@ int initialize_hooks()
 	if (MH_EnableHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
 		return 0;
 	
-	if (MH_CreateHook(static_cast<void*>(HashFileName), &hHashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
+	if (MH_CreateHook(static_cast<void*>(HashFileName), &hk_HashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
 		return 0;
 	if (MH_EnableHook(static_cast<void*>(HashFileName)) != MH_OK)
 		return 0;
