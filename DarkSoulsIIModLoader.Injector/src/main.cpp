@@ -37,6 +37,7 @@ int main(int /*argc*/, char * /*argv*/[])
 
 int inject_dll(DWORD process_id, const char* dll_name)
 {
+	// The following antivirus engines report this as risks/not malicious: Cyren, F-Prot and VIPRE
 	HANDLE process_handle;
 	LPVOID remote_string;
 	LPVOID load_library_address;
@@ -60,7 +61,6 @@ int get_process_id_from_process_name(const char* process_name)
 {
 	PROCESSENTRY32 process_entry;
 	HANDLE snapshot_handle;
-	BOOL process_entry_set;
 
 	snapshot_handle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (snapshot_handle == INVALID_HANDLE_VALUE)
@@ -68,14 +68,12 @@ int get_process_id_from_process_name(const char* process_name)
 
 	process_entry.dwSize = sizeof(PROCESSENTRY32);
 
-	process_entry_set = Process32First(snapshot_handle, &process_entry);
-	while (process_entry_set)
+	while (Process32Next(snapshot_handle, &process_entry))
 	{
 		if (StrStrIA(process_entry.szExeFile, process_name))
 		{
 			return process_entry.th32ProcessID;
 		}
-		process_entry_set = Process32Next(snapshot_handle, &process_entry);
 	}
 	return 0;
 }

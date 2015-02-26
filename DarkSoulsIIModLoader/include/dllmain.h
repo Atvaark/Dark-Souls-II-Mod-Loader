@@ -41,7 +41,9 @@ bool __fastcall hk_HashFileName(wchar_t* fileName, void* notUsedDcx, unsigned in
 
 void __stdcall log_hash(wchar_t* file_name, unsigned int hash);
 
-int initialize_hooks();
+int create_hooks();
+
+int enable_hooks();
 
 int remove_hooks();
 

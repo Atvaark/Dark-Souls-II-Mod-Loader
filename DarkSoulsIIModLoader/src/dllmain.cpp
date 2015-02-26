@@ -251,32 +251,33 @@ void __stdcall log_hash(wchar_t* fileName, unsigned int hash)
 	}
 }
 
-int initialize_hooks()
+int create_hooks()
 {
 	if (MH_Initialize() != MH_OK)
 		return 0;
-
 	if (MH_CreateHook(static_cast<void*>(FileLoader_ReadFile), &hk_FileLoader_read_file, reinterpret_cast<void**>(&oFileLoader_ReadFile)) != MH_OK)
 		return 0;
-	if (MH_EnableHook(static_cast<void*>(FileLoader_ReadFile)) != MH_OK)
-		return 0;
-
 	if (MH_CreateHook(static_cast<void*>(FileLoader_ReadFileInnenr), &hk_FileLoader_read_file_inner, reinterpret_cast<void**>(&oFileLoader_ReadFileInner)) != MH_OK)
+		return 0;
+	if (MH_CreateHook(static_cast<void*>(FileLoader_AddNewFileToLoad), &hk_FileLoader_add_new_file_to_load, reinterpret_cast<void**>(&oFileLoader_AddNewFileToLoad)) != MH_OK)
+		return 0;
+	if (MH_CreateHook(static_cast<void*>(HashFileName), &hk_HashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
+		return 0;
+	return 1;
+}
+
+int enable_hooks()
+{
+	// The antirvirus engine Jiangmin detects this (Minihook MH_EnableHook) as AdWare/SubTab.b 
+	if (MH_EnableHook(static_cast<void*>(FileLoader_ReadFile)) != MH_OK)
 		return 0;
 	if (MH_EnableHook(static_cast<void*>(FileLoader_ReadFileInnenr)) != MH_OK)
 		return 0;
-
-	if (MH_CreateHook(static_cast<void*>(FileLoader_AddNewFileToLoad), &hk_FileLoader_add_new_file_to_load, reinterpret_cast<void**>(&oFileLoader_AddNewFileToLoad)) != MH_OK)
-		return 0;
 	if (MH_EnableHook(static_cast<void*>(FileLoader_AddNewFileToLoad)) != MH_OK)
-		return 0;
-	
-	if (MH_CreateHook(static_cast<void*>(HashFileName), &hk_HashFileName, reinterpret_cast<void**>(&oHashFileName)) != MH_OK)
 		return 0;
 	if (MH_EnableHook(static_cast<void*>(HashFileName)) != MH_OK)
 		return 0;
-
-	return 1;
+	return 1;	
 }
 
 int remove_hooks()
@@ -400,7 +401,8 @@ void initialize()
 	interceptor.enabled = settings.replace_files;
 	dumper.enabled = settings.dump_files;
 
-	initialize_hooks();
+	create_hooks();
+	enable_hooks();
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
