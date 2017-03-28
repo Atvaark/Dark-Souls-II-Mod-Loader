@@ -1,15 +1,15 @@
-#Dark Souls II Mod Loader
+# Dark Souls II Mod Loader
 A tool that replaces the file loading mechanism with a custom implementation.
 This allows shenanigans like dumping files to disk and replacing requested files with customized ones at runtime.
 
 Project source and latest releases are available at:
 https://github.com/Atvaark/Dark-Souls-II-Mod-Loader
 
-##Installation
+## Installation
 1. Download the latest release from https://github.com/Atvaark/Dark-Souls-II-Mod-Loader/releases
 2. Unpack the zip file somewhere
 
-##Configuration
+## Configuration
 General settings are stored in *DarkSoulsIIModLoader.ini*. The available options are:
 >`dump_files`
 >When enabled the mod loader also saves all requested files to disk.
@@ -41,16 +41,16 @@ Example:
 
 Replacements can be disabled by commenting them out with a # character.
   
-##Running
+## Running
 1. Run *DarkSoulsIIModLoader.Injector.exe* (administrative rights might be required)
 2. Start Dark Souls II
 
-##Remarks
+## Remarks
 * Replacing a file with a bigger one is not supported yet 
 
 ---
 
-##Development
+## Development
 
-###Build Requirements
+### Build Requirements
 * Visual Studio 2013
